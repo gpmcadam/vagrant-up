@@ -1,0 +1,17 @@
+#!/usr/bin/php
+<?php
+$cwd = __DIR__;
+$output = `vagrant global-status`;
+foreach(array_slice(explode(PHP_EOL, $output), 2) as $line) {
+    if (empty(trim($line))) {
+        break;
+    }
+    list($id, $name, $proider, $state, $dir) 
+        = preg_split("/\s+/", trim($line));
+    if ($state === 'running' and $dir !== $cwd) {
+        print "Suspending " . $id . " (".$dir.")" .PHP_EOL;
+        `cd $dir && vagrant suspend && cd $cwd`;
+    }
+}
+print "Bringing vagrant up...";
+`vagrant up`;
