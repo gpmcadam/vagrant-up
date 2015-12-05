@@ -10,5 +10,5 @@ only the current vagrant machine.
 
 ### Via Composer
 
-    $ php composer global-require gpmcadam/vagrant-up
+    $ composer global require gpmcadam/vagrant-up
 
