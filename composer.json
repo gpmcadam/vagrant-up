@@ -1,0 +1,17 @@
+{
+    "name": "gpmcadam/vagrant-up",
+    "description": "Suspend vagrant instances and bring current vagrant machine up",
+    "type": "project",
+    "keywords": ["vagrant"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Gary McAdam",
+            "email": "gary@mcad.am"
+        }
+    ],
+    "require": {},
+    "bin": [
+        "vagrant-up"
+    ]
+}
