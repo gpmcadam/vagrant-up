@@ -23,5 +23,9 @@ foreach (array_slice(explode(PHP_EOL, $output), 2) as $line) {
         `cd $dir && vagrant suspend && cd $cwd`;
     }
 }
-print "Bringing vagrant up...";
-`$cmd`;
+
+$proc = popen($cmd, 'r');
+while (!feof($proc)) {
+    echo fread($proc, 4096);
+    @flush();
+}
