@@ -12,7 +12,7 @@ if (count($args) > 0) {
     $cmd .= ' ' . implode(' ', $args);
 }
 
-foreach(array_slice(explode(PHP_EOL, $output), 2) as $line) {
+foreach (array_slice(explode(PHP_EOL, $output), 2) as $line) {
     if (empty(trim($line))) {
         break;
     }
