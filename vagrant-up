@@ -2,11 +2,21 @@
 <?php
 $cwd = __DIR__;
 $output = `vagrant global-status`;
+
+$args = $argv;
+unset($args[0]);
+
+$cmd = 'vagrant up';
+
+if (count($args) > 0) {
+    $cmd .= ' ' . implode(' ', $args);
+}
+
 foreach(array_slice(explode(PHP_EOL, $output), 2) as $line) {
     if (empty(trim($line))) {
         break;
     }
-    list($id, $name, $proider, $state, $dir) 
+    list($id, $name, $proider, $state, $dir)
         = preg_split("/\s+/", trim($line));
     if ($state === 'running' and $dir !== $cwd) {
         print "Suspending " . $id . " (".$dir.")" .PHP_EOL;
@@ -14,4 +24,4 @@ foreach(array_slice(explode(PHP_EOL, $output), 2) as $line) {
     }
 }
 print "Bringing vagrant up...";
-`vagrant up`;
+`$cmd`;
