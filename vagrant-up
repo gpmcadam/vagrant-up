@@ -20,7 +20,7 @@ foreach (array_slice(explode(PHP_EOL, $output), 2) as $line) {
         = preg_split("/\s+/", trim($line));
     if ($state === 'running' and $dir !== $cwd) {
         print "Suspending " . $id . " (".$dir.")" .PHP_EOL;
-        `cd $dir && vagrant suspend && cd $cwd`;
+        `vagrant suspend $id`;
     }
 }
 
