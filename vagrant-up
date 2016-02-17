@@ -5,12 +5,10 @@ $output = `vagrant global-status`;
 
 $args = $argv;
 unset($args[0]);
+$args[] = '--color';
 
 $cmd = 'vagrant up';
-
-if (count($args) > 0) {
-    $cmd .= ' ' . implode(' ', $args);
-}
+$cmd .= ' ' . implode(' ', $args);
 
 foreach (array_slice(explode(PHP_EOL, $output), 2) as $line) {
     if (empty(trim($line))) {
